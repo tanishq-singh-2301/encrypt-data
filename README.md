@@ -2,9 +2,7 @@
 
 <img src="./public/images/logo.svg" width="160" height="160" alt="sharp logo" align="right">
 
-The typical use case for this high speed Node.js module
-is to convert data in common text to
-encrypted.
+The typical use case for this high speed Node.js module is to convert data in common text to encrypted string.
 
 Encryption and decryption of the data is done with the help of military grade encryption (AES-256) [crypto](https://nodejs.org/api/crypto.html).
 
