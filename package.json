@@ -1,12 +1,12 @@
 {
-  "name": "encrypt-data",
+  "name": "ciphering",
   "version": "1.0.0",
   "description": "",
   "author": "Tanishq Singh <tanishqsingh640@gmail.com>",
   "contributors": [],
-  "main": "dist/encrypt-data.js",
-  "umd:main": "dist/encrypt-data.umd.js",
-  "module": "dist/encrypt-data.mjs",
+  "main": "dist/ciphering.js",
+  "umd:main": "dist/ciphering.umd.js",
+  "module": "dist/ciphering.mjs",
   "files": [
     "dist",
     "readme.md"
@@ -38,7 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tanishq-singh-2301/encrypt-data"
+    "url": "git+https://github.com/tanishq-singh-2301/ciphering"
   },
   "keywords": [],
   "jest": {
@@ -54,7 +54,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tanishq-singh-2301/encrypt-data/issues"
+    "url": "https://github.com/tanishq-singh-2301/ciphering/issues"
   },
-  "homepage": "https://github.com/tanishq-singh-2301/encrypt-data#readme"
+  "homepage": "https://github.com/tanishq-singh-2301/ciphering#readme"
 }

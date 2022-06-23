@@ -11,6 +11,6 @@
   "author": "Tanishq",
   "license": "ISC",
   "dependencies": {
-    "encrypt-data": "file:.."
+    "ciphering": "file:.."
   }
 }

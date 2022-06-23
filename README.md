@@ -16,15 +16,15 @@ do not require any additional install or runtime dependencies.
 ## Examples
 
 ```sh
-npm install encrypt-data
+npm install ciphering
 ```
 
 ```typescript
-const Ciphering = require('encrypt-data');
+const Ciphering = require('ciphering');
 
 // or
 
-import Ciphering from 'encrypt-data';
+import Ciphering from 'ciphering';
 ```
 
 ### Initializing
@@ -65,7 +65,7 @@ const decryption: string = ciphering.decryptData(encryption); //"my-personal-dat
 
 ## Contributing
 
-A [guide for contributors](https://github.com/tanishq-singh-2301/encrypt-data/blob/main/.github/CONTRIBUTING.md)
+A [guide for contributors](https://github.com/tanishq-singh-2301/ciphering/blob/main/.github/CONTRIBUTING.md)
 covers reporting bugs, requesting features and submitting code changes.
 
 [![Node v14](https://img.shields.io/badge/Node-v14-green.svg)](https://nodejs.org/dist/latest/docs/api/n-api.html#n_api_n_api_version_matrix)

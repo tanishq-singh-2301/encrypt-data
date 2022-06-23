@@ -1,4 +1,4 @@
-import Ciphering from 'encrypt-data';
+import Ciphering from 'ciphering';
 
 // These are general keys, (same for all users).
 const key1 = "key-1";
