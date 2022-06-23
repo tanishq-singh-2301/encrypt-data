@@ -1,4 +1,4 @@
-# encrypt data
+# Ciphering
 
 <img src="./public/images/logo.svg" width="160" height="160" alt="sharp logo" align="right">
 
