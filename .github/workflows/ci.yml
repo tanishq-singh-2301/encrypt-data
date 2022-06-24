@@ -1,4 +1,4 @@
-name: ci ~ ciphering
+name: ci
 
 on:
   push:
@@ -64,4 +64,4 @@ jobs:
       - name: Releasing
         uses: actions/create-release@v1
 
-        run: echo ${{ steps.version.outputs.version }}
+      - run: echo ${{ steps.version.outputs.version }}
