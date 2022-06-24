@@ -1,11 +1,13 @@
-import decrypt from "./decrypt";
-import encrypt from "./encrypt";
+import { main as decrypt } from "./decrypt";
+import { main as encrypt } from "./encrypt";
 
-class ciphering {
+export class Ciphering {
   key_1: string;
+
   key_2: string;
+
   key_3: string;
-  shifting: number;
+
   masterPassword: string;
 
   constructor(key_1: string, key_2: string, key_3: string, masterPassword: string) {
@@ -13,20 +15,26 @@ class ciphering {
     this.key_2 = key_2;
     this.key_3 = key_3;
     this.masterPassword = masterPassword;
-    this.shifting = 0;
   }
 
   public encryptData(data: string): string {
-    const token: string = encrypt(this.masterPassword, data, this.key_1, this.key_2, this.key_3, this.shifting);
+    const token: string = encrypt(this.masterPassword, data, this.key_1, this.key_2, this.key_3);
 
     return token;
   }
 
-  public decryptData(token: string): string {
-    const data: string = decrypt(this.masterPassword, token, this.key_1, this.key_2, this.key_3, this.shifting);
+  public decryptData(token: string): {
+    data?: string,
+    success: boolean
+  } {
+    try {
+      const data: string = decrypt(this.masterPassword, token, this.key_1, this.key_2, this.key_3);
 
-    return data
+      return { success: true, data }
+    } catch (error) {
+      console.error(error);
+
+      return { success: false }
+    }
   }
 }
-
-export default ciphering;

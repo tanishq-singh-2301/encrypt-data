@@ -12,7 +12,9 @@
       "@lib/*": [
         "lib/*"
       ]
-    }
+    },
+    "declaration": true,
+    "sourceMap": true
   },
   "include": [
     "**/*.ts",

@@ -1,45 +1,45 @@
-import Ciphering from "../src";
+import { Ciphering } from "../src";
 import { generate } from 'generate-password';
 
 const randomNumber = (num: number): number => Math.floor(Math.random() * (num + 1))
 
 describe("Ciphering", () => {
-    const config = {
+    const configKey = {
         length: randomNumber(50),
         numbers: true,
         symbols: true,
         excludeSimilarCharacters: true
     }
 
-    const key_1: string = generate(config);
-    const key_2: string = generate(config);
-    const key_3: string = generate(config);
+    const Key1: string = generate(configKey);
+    const Key2: string = generate(configKey);
+    const Key3: string = generate(configKey);
 
-    const tests = (shiftingDigit: number, length: number, testName: string) => {
-        const test_function = (masterPassword: string, data: string, shifting: number): string => {
-            const ciphering: Ciphering = new Ciphering(key_1, key_2, key_3, masterPassword, shifting);
+    const tests = (shiftingDigit: number, length: number, testName: string): void => {
+        const testFunction = (masterPassword: string, data: string, shifting: number): string => {
+            const ciphering: Ciphering = new Ciphering(Key1, Key2, Key3, masterPassword);
 
             const token: string = ciphering.encryptData(data);
 
-            return ciphering.decryptData(token);
+            return ciphering.decryptData(token).data!;
         }
 
-        const config = {
+        const configTest = {
             length: randomNumber(length),
             numbers: true,
             symbols: true,
             excludeSimilarCharacters: true
         }
 
-        test(testName, () => {
-            const masterPassword: string = generate(config);
+        test(testName.toUpperCase(), () => {
+            const masterPassword: string = generate(configTest);
             const shifting: number = randomNumber(shiftingDigit);
-            const data: string = generate(config);
-            const is_this_my_data: string = test_function(masterPassword, data, shifting);
+            const data: string = generate(configTest);
+            const isThisMyData: string = testFunction(masterPassword, data, shifting);
 
-            expect(is_this_my_data).toMatch(data);
-            expect(is_this_my_data).toBe(data);
-            expect(is_this_my_data === data).toBe(true);
+            expect(isThisMyData).toMatch(data);
+            expect(isThisMyData).toBe(data);
+            expect(isThisMyData === data).toBe(true);
         });
     }
 

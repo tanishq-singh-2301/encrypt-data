@@ -1,9 +1,9 @@
 import { createDecipheriv, Decipher } from 'crypto';
-import getCipherKey from '../cipher_key';
+import { getCipherKey } from '../cipher-key';
 
-type decryptedOutput = { data: string };
+type DecryptedOutput = { data: string };
 
-const decryptText = ({ token, password }: { token: string, password: string }): decryptedOutput => {
+export const decryptText = ({ token, password }: { token: string, password: string }): DecryptedOutput => {
     const textParts: Array<string> = token.split(':');
 
     const iv: Buffer = Buffer.from(textParts.shift()!, 'hex');
@@ -19,7 +19,6 @@ const decryptText = ({ token, password }: { token: string, password: string }): 
     };
 }
 
-export default decryptText;
 export type {
-    decryptedOutput
+    DecryptedOutput
 }

@@ -55,7 +55,10 @@ const encrypted_data: string = ciphering.encryptData(my_data); // "ea8dd60fed5..
 
 ```typescript
 // To decrypt data we'll need the encrypted_data token.
-const decryption: string = ciphering.decryptData(encryption); //"my-personal-data"
+const decryption: string = ciphering.decryptData(encryption); // object
+
+decryption.success // boolean
+decryption.data // "my-personal-data" iff success === true
 ```
 
 ## Image Example
