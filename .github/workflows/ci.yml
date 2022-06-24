@@ -6,52 +6,49 @@ on:
       - main
 
 jobs:
-  build:
-    name: Package Build 🪛
-    runs-on: ubuntu-latest
+  # build:
+  #   name: Package Build 🪛
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '14.x'
       
-      - name: Installing Packages 📝
-        run: npm install
+  #     - name: Installing Packages 📝
+  #       run: npm install
 
-      - name: Building Application 🍏
-        run: npm run build
+  #     - name: Building Application 🍏
+  #       run: npm run build
 
-  unit_testing:
-    needs: [build]
-    name: Running units tests 🧪
-    strategy:
-      matrix:
-        # os: [macos-latest, windows-latest, ubuntu-latest]
-        # version: [12, 14, 16]
+  # unit_testing:
+  #   needs: [build]
+  #   name: Running units tests 🧪
+  #   strategy:
+  #     matrix:
+  #       # os: [macos-latest, windows-latest, ubuntu-latest]
+  #       # version: [12, 14, 16]
 
-        os: [ubuntu-latest]
-        version: [14]
+  #   runs-on: ${{ matrix.os }}
 
-    runs-on: ${{ matrix.os }}
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-    steps:
-      - uses: actions/checkout@v2
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: ${{ matrix.version }}
 
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.version }}
-
-      - name: Running tests
-        run: |
-          npm install
-          npm test
+  #     - name: Running tests
+  #       run: |
+  #         npm install
+  #         npm test
 
   release:
-    needs: [unit_testing]
+    # needs: [unit_testing]
     name: Creating a new release 🎀
     runs-on: ubuntu-latest
 
@@ -63,8 +60,8 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: Releasing
-        uses: actions/create-release@v1
+      # - name: Releasing
+      #   uses: actions/create-release@v1
 
       - run: echo ${{ steps.version.outputs.version }}
       - run: echo ${{ github.ref }}
