@@ -46,7 +46,8 @@ jobs:
           node-version: ${{ matrix.version }}
 
       - name: Running tests
-        run: npm run test
+        run: npm ci
+        run: npm test
 
   release:
     needs: [unit_testing]
@@ -65,3 +66,5 @@ jobs:
         uses: actions/create-release@v1
 
       - run: echo ${{ steps.version.outputs.version }}
+      - run: echo ${{ github.ref }}
+      - run: echo ${{ github.token }}
