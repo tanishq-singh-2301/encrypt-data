@@ -2,15 +2,16 @@
   "name": "example",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "index.mjs",
+  "module": "index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.mjs",
+    "dev": "nodemon index.mjs"
   },
   "keywords": [],
   "author": "Tanishq",
   "license": "ISC",
   "dependencies": {
-    "ciphering": "file:.."
+    "ciphering": "^1.0.3"
   }
 }
