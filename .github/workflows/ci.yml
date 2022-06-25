@@ -60,14 +60,13 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: Create Release ✒️
-        id: release
-        uses: halvardssm/github-action-tag-release@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: "./package.json"
+      - name: Reading JSON
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+            path: 'package.json'
+            prop_path: 'version'
 
-      -  run: |
-          echo 'Release created: ${{steps.version.outputs.release_created}}'
-          echo 'Release exists: ${{steps.version.outputs.release_exists}}'
-          echo 'Release tag: ${{steps.version.outputs.release_tag}}'
+      - run: echo ${{steps.version.outputs.prop}} 
+
+      # - name: Create Release ✒️
