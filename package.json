@@ -1,6 +1,6 @@
 {
     "name": "ciphering",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "The typical use case for this high speed Node.js module is to convert data in common text to encrypted string.",
     "author": "Tanishq Singh <tanishqsingh640@gmail.com>",
     "contributors": [],
