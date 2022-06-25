@@ -67,9 +67,12 @@ jobs:
           path: 'package.json'
           prop_path: 'version'
 
-      - run: echo ${{steps.version.outputs.prop}} 
-      - run: echo ${{github.ref}}
-      - run: echo ${{ github.event.head_commit.message }}
-      - run: echo "${{toJSON(github.event)}}"
+      - run: echo ${{steps.version.outputs.prop}}  # package.json version
+      - run: echo ${{ github.event.head_commit.message }} # last commit message
 
-      # - name: Create Release ✒️
+      - name: Create Release ✒️
+        uses: softprops/action-gh-release@v1
+        with:
+          name: name 🙂
+          tag_name: tag name 📝
+          token: ${{secrets.GITHUB_TOKEN}}

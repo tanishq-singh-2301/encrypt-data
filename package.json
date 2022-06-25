@@ -12,8 +12,7 @@
         "build": "microbundle -o dist/ --compress true",
         "dev": "microbundle watch -o dist/ --compress false --sourcemap false",
         "test": "jest --coverage",
-        "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-        "push": "node ./push/index.mjs"
+        "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
     },
     "files": [
         "dist",
@@ -44,7 +43,18 @@
         "type": "git",
         "url": "git+https://github.com/tanishq-singh-2301/ciphering"
     },
-    "keywords": [],
+    "keywords": [
+        "aes-256",
+        "crypto",
+        "cryptography",
+        "decryption",
+        "encryption",
+        "encryption-decryption",
+        "jest",
+        "master-password",
+        "military-grade",
+        "typescript"
+    ],
     "jest": {
         "testEnvironment": "node",
         "testPathIgnorePatterns": [
