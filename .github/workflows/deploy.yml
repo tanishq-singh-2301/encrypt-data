@@ -31,7 +31,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Continious Integration 🪛
-        run: npm ci
+        run: |
+          npm ci
+          npm run build
 
       - name: Publish package on NPM 📦
         run: npm publish

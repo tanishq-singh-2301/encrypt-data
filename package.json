@@ -1,6 +1,6 @@
 {
     "name": "ciphering",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "The typical use case for this high speed Node.js module is to convert data in common text to encrypted string.",
     "author": "Tanishq Singh <tanishqsingh640@gmail.com>",
     "contributors": [],
@@ -38,9 +38,7 @@
         "microbundle": "^0.13.0",
         "prettier": "^2.7.1",
         "ts-jest": "^26.3.0",
-        "typescript": "^4.0.3",
-        "inquirer": "^9.0.0",
-        "ts-node": "^10.8.1"
+        "typescript": "^4.0.3"
     },
     "repository": {
         "type": "git",
