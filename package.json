@@ -13,7 +13,7 @@
         "dev": "microbundle watch -o dist/ --compress false --sourcemap false",
         "test": "jest --coverage",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\""
+        "format": "prettier --write \"src/**/*.ts\""
     },
     "files": [
         "dist",
