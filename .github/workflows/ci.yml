@@ -48,7 +48,7 @@ jobs:
           npm test
 
   release:
-    needs: unit_testing
+    # needs: unit_testing
     name: Creating a new release 🎀
     runs-on: ubuntu-latest
 
