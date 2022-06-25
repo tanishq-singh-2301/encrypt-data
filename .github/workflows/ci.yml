@@ -73,6 +73,6 @@ jobs:
       - name: Create Release ✒️
         uses: softprops/action-gh-release@v1
         with:
-          name: name 🙂
-          tag_name: tag name 📝
+          name: ${{ github.event.head_commit.message }}
+          tag_name: v${{steps.version.outputs.prop}}
           token: ${{secrets.GITHUB_TOKEN}}
