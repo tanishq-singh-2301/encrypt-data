@@ -64,7 +64,7 @@ jobs:
         id: release
         uses: halvardssm/github-action-tag-release@v1
         with:
-          token: ${{ secrets.TOKEN_GITHUB }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           path: "./package.json"
 
       -  run: |
