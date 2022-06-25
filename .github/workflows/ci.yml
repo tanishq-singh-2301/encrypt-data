@@ -75,4 +75,4 @@ jobs:
         with:
           name: ${{ github.event.head_commit.message }} - v${{steps.version.outputs.prop}}
           tag_name: v${{steps.version.outputs.prop}}
-          token: ${{secrets.GITHUB_TOKEN}}
+          token: ${{secrets.PAT}}
