@@ -67,7 +67,7 @@ jobs:
           token: ${{ secrets.TOKEN_GITHUB }}
           path: "./package.json"
 
-        run: |
+      -  run: |
           echo 'Release created: ${{steps.version.outputs.release_created}}'
           echo 'Release exists: ${{steps.version.outputs.release_exists}}'
           echo 'Release tag: ${{steps.version.outputs.release_tag}}'
