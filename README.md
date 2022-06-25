@@ -22,7 +22,7 @@ const Ciphering = require('ciphering');
 
 // or
 
-import Ciphering from 'ciphering';
+import { Ciphering } from 'ciphering';
 ```
 
 ### Initializing

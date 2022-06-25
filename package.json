@@ -12,7 +12,8 @@
         "build": "microbundle -o dist/ --compress true",
         "dev": "microbundle watch -o dist/ --compress false --sourcemap false",
         "test": "jest --coverage",
-        "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
+        "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\""
     },
     "files": [
         "dist",
@@ -35,9 +36,11 @@
         "generate-password": "^1.7.0",
         "jest": "^26.4.2",
         "microbundle": "^0.13.0",
-        "prettier": "^2.0.4",
+        "prettier": "^2.7.1",
         "ts-jest": "^26.3.0",
-        "typescript": "^4.0.3"
+        "typescript": "^4.0.3",
+        "inquirer": "^9.0.0",
+        "ts-node": "^10.8.1"
     },
     "repository": {
         "type": "git",
@@ -70,9 +73,5 @@
     "bugs": {
         "url": "https://github.com/tanishq-singh-2301/ciphering/issues"
     },
-    "homepage": "https://github.com/tanishq-singh-2301/ciphering#readme",
-    "dependencies": {
-        "inquirer": "^9.0.0",
-        "ts-node": "^10.8.1"
-    }
+    "homepage": "https://github.com/tanishq-singh-2301/ciphering#readme"
 }
