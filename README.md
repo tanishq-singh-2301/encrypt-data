@@ -1,68 +1,67 @@
-# Ciphering
+# **Ciphering**
 
 <img src="./public/images/logo.svg" width="160" height="160" alt="sharp logo" align="right">
 
 The typical use case for this high speed Node.js module is to convert data in common text to encrypted string.
 
-Encryption and decryption of the data is done with the help of military grade encryption (AES-256) [crypto](https://nodejs.org/api/crypto.html).
+Encryption and decryption of the data is done with the help of military grade encryption `(AES-256)` [crypto](https://nodejs.org/api/crypto.html).
 
 The data is encrypted with three levels of encryption excluding the one which uses the master key.
 
 Most modern macOS, Windows and Linux systems running Node.js >= 12.13.0
 do not require any additional install or runtime dependencies.
 
-## Examples
+## _**Examples**_
 
 ```sh
 npm install ciphering
 ```
 
 ```typescript
-const Ciphering = require('ciphering');
+const { decrypt, encrypt } = require('ciphering');
 
 // or
 
-import { Ciphering } from 'ciphering';
+import { decrypt, encrypt } from 'ciphering';
 ```
 
-### Initializing
+### _**General**_
 
-1. These are general encryption keys,
-2. Must be protected and saved in .env file when deployed in production.
+1. Create a `password` (key),
+2. Must be protected and saved in `.env` file when deployed in production.
 
 ```typescript
-const key1: string = process.env.KEY_1 as string;
-const key2: string = process.env.KEY_2 as string;
-const key3: string = process.env.KEY_3 as string;
+const key: string = process.env.KEY as string;
 ```
 
-1. Master-Password must be different for every user,
-2. But will be same for single user with multiple data.
+### _**Encrypting Data**_
 
 ```typescript
-const masterPassword: string = "master-pass";
-const ciphering = new Ciphering(key1, key2, key3, masterPassword);
+const data: string = "my-personal-data"; // data which to be encrypted
+const encryption = encrypt.encryptData({ data, key });
+
+/**
+ * output:
+ *  {
+ *      token: 'd811948ba5dd95584ddf847afc8601c3:5a0229c6cecc095a92b5a3ee1a793240',
+ *      vector: <Buffer d8 11 94 8b a5 dd 95 58 4d df 84 7a fc 86 01 c3>
+ *  }
+ */
 ```
 
-### Encrypting Data
-
-```typescript
-const my_data: string = "my-personal-data"; // data which to be encrypted
-const encrypted_data: string = ciphering.encryptData(my_data); // "ea8dd60fed5..."
-```
-
-### Decrypting Data
+### _**Decrypting Data**_
 
 ```typescript
 // To decrypt data we'll need the encrypted_data token.
-const decryption: string = ciphering.decryptData(encryption); // object
+const decryption = decrypt.decryptData({ token: encryption.token, key });
 
-decryption.success // boolean
-decryption.data // "my-personal-data" iff success === true
+decryption
+    .then(console.log) // "my-personal-data"
+    .catch(console.error); // error: unknown
 ```
 
-## Image Example
-<img src="./public/images/example_code.png" width="100%" alt="sharp logo" align="center" style="padding-bottom:30px; padding-top:10px;">
+## _**Image Example**_
+<img src="./public/images/Snap.png" width="100%" alt="sharp logo" align="center" style="padding-bottom:30px; padding-top:10px;">
 
 ## Contributing
 
@@ -71,7 +70,7 @@ covers reporting bugs, requesting features and submitting code changes.
 
 [![Node v14](https://img.shields.io/badge/Node-v14-green.svg)](https://nodejs.org/dist/latest/docs/api/n-api.html#n_api_n_api_version_matrix)
 
-## Licensing
+## _**Licensing**_
 
 The MIT License (MIT)
 

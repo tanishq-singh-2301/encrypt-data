@@ -1,35 +1,24 @@
-import { encryptText } from "../../lib/ciphering/encrypt";
-import type { EncryptedOutput } from "../../lib/ciphering/encrypt";
+import { Cipher, randomBytes, createCipheriv } from 'crypto';
+import { getCipherKey } from '../../lib/cipher-key';
 
-export const main = (
-  masterPasssword: string,
-  data: string,
-  key_1: string,
-  key_2: string,
-  key_3: string
-): string => {
-  const token1: EncryptedOutput = encryptText({
-    text: masterPasssword,
-    password: key_1,
-  });
-  const vecToken: string = encryptText({
-    text: token1.vector.toString("hex"),
-    password: key_2,
-  }).token;
+type EncryptedOutput = { token: string, vector: Buffer };
 
-  const token2: EncryptedOutput = encryptText({
-    text: data,
-    password: token1.token,
-  });
-  const token4: EncryptedOutput = encryptText({
-    text: token2.token,
-    password: key_3,
-  });
+export const encryptData = ({ data, key, vector }: { data: string, key: string, vector?: Buffer | undefined }): EncryptedOutput => {
+    const iv: Buffer = vector ?? randomBytes(16);
+    const CIPHER_KEY: Buffer = getCipherKey(key);
+    const cipher: Cipher = createCipheriv("AES-256-CBC", CIPHER_KEY, iv);
+    let encrypted: Buffer = cipher.update(data);
 
-  const masterVectorToken: Array<string> = vecToken.split(":");
-  const masterToken: Array<string> = token4.token.split(":");
+    encrypted = Buffer.concat([encrypted, cipher.final()]);
 
-  const token = `${masterVectorToken[0]}:${masterToken[0]}:${masterVectorToken[1]}:${masterToken[1]}`;
+    const token = `${iv.toString('hex')}:${encrypted.toString('hex')}`;
 
-  return token;
+    return {
+        token,
+        vector: iv
+    };
 };
+
+export type {
+    EncryptedOutput
+}

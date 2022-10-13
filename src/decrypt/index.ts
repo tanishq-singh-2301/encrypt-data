@@ -1,38 +1,20 @@
-import { decryptText } from "../../lib/ciphering/decrypt";
-import type { DecryptedOutput } from "../../lib/ciphering/decrypt";
-import { encryptText, EncryptedOutput } from "../../lib/ciphering/encrypt";
+import { createDecipheriv, Decipher } from 'crypto';
+import { getCipherKey } from '../../lib/cipher-key';
 
-export const main = (
-  masterPasssword: string,
-  token: string,
-  key_1: string,
-  key_2: string,
-  key_3: string
-): string => {
-  const values: Array<string> = token.split(":");
-  const token4 = `${values[1]}:${values[3]}`;
-  const vecToken = `${values[0]}:${values[2]}`;
-
-  const token3: DecryptedOutput = decryptText({
-    token: token4,
-    password: key_3,
-  });
-
-  const vector: Buffer = Buffer.from(
-    decryptText({ token: vecToken, password: key_2 }).data,
-    "hex"
-  );
-
-  const token1: EncryptedOutput = encryptText({
-    text: masterPasssword,
-    password: key_1,
-    vector,
-  });
-
-  const data: DecryptedOutput = decryptText({
-    token: token3.data,
-    password: token1.token,
-  });
-
-  return data.data;
-};
+export const decryptData = ({ token, key }: { token: string, key: string }): Promise<string> => new Promise((resolve, reject) => {
+    try {
+        const textParts: Array<string> = token.split(':');
+    
+        const iv: Buffer = Buffer.from(textParts.shift()!, 'hex');
+        const CIPHER_KEY: Buffer = getCipherKey(key);
+        const encryptedText: Buffer = Buffer.from(textParts.join(':'), 'hex');
+        const decipher: Decipher = createDecipheriv("AES-256-CBC", CIPHER_KEY, iv);
+        let decrypted: Buffer = decipher.update(encryptedText);
+    
+        decrypted = Buffer.concat([decrypted, decipher.final()]);
+    
+        resolve(decrypted.toString());
+    } catch (error) {
+        reject(error)
+    }
+});
