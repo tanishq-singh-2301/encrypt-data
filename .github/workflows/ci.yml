@@ -19,7 +19,7 @@ jobs:
           node-version: '14.x'
       
       - name: Installing Packages 📝
-        run: npm install
+        run: npm ci
 
       - name: Building Application 🍏
         run: npm run build
@@ -45,7 +45,7 @@ jobs:
       - name: Running tests
         run: |
           npm ci
-          npm test
+          npm run test
 
   release:
     needs: unit_testing
