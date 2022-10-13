@@ -1,57 +1,29 @@
-import { main as decrypt } from "./decrypt";
-import { main as encrypt } from "./encrypt";
+import { encryptText } from "../lib/ciphering/encrypt";
+import type { EncryptedOutput } from "../lib/ciphering/encrypt";
+
+import { decryptText } from "../lib/ciphering/decrypt";
+import type { DecryptedOutput } from "../lib/ciphering/decrypt";
 
 export class Ciphering {
-  key_1: string;
+	key: string;
 
-  key_2: string;
+	constructor(key: string) {
+		this.key = key;
+  	}
 
-  key_3: string;
+  	public encryptData(data: string): EncryptedOutput {
+    	return encryptText({ text: data, password: this.key });
+  	}
 
-  masterPassword: string;
+ 	public decryptData(token: string): { data?: DecryptedOutput; success: boolean; } {
+    	try {
+			const data = decryptText({ token, password: this.key })
 
-  constructor(
-    key_1: string,
-    key_2: string,
-    key_3: string,
-    masterPassword: string
-  ) {
-    this.key_1 = key_1;
-    this.key_2 = key_2;
-    this.key_3 = key_3;
-    this.masterPassword = masterPassword;
-  }
+      		return { success: true, data };
+    	} catch (error) {
+      		console.error(error);
 
-  public encryptData(data: string): string {
-    const token: string = encrypt(
-      this.masterPassword,
-      data,
-      this.key_1,
-      this.key_2,
-      this.key_3
-    );
-
-    return token;
-  }
-
-  public decryptData(token: string): {
-    data?: string;
-    success: boolean;
-  } {
-    try {
-      const data: string = decrypt(
-        this.masterPassword,
-        token,
-        this.key_1,
-        this.key_2,
-        this.key_3
-      );
-
-      return { success: true, data };
-    } catch (error) {
-      console.error(error);
-
-      return { success: false };
-    }
-  }
+      		return { success: false };
+    	}
+  	}
 }
